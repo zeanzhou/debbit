@@ -24,3 +24,5 @@ _site/
 .editorconfig
 notes.txt
 
+# Virtual Environment
+.venv/

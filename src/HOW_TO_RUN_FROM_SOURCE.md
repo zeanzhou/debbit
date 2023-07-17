@@ -19,6 +19,13 @@ If you want to develop debbit or use on Linux follow instructions below.
     pip3 install --user --upgrade pipenv
     ```
 
+    or 
+
+    ```
+    pip3 -m venv .venv
+    ./.venv/Scripts/Activate.ps1
+    ```
+
 # Routinely
 When dependencies are updated, and on first-time setup, you'll need to run the following:
 
@@ -27,8 +34,22 @@ cd debbit/src
 pipenv install
 ```
 
+or
+
+```
+./.venv/Scripts/Activate.ps1
+pip install -r requirements.txt
+```
+
 # Every Time: run debbit via pipenv
 
 `pipenv run python debbit.py`
 
 You can also use `pipenv shell` then `python debbit.py` if you want to keep the `pipenv` environment around. 
+
+or
+
+```
+./.venv/Scripts/Activate.ps1
+python debbit.py
+```
