@@ -3,11 +3,9 @@ If you want to develop debbit or use on Linux follow instructions below.
 
 # One time setup
 1. Clone this GitHub repo or download the source code.
-2. Install the latest version of Firefox.
-3. Download the latest `geckodriver` for your OS from here https://github.com/mozilla/geckodriver/releases Then, extract the zip/tar.gz and place `geckodriver` (or `geckodriver.exe`) in the `debbit/src/program_files` directory, which is directly under the same folder as `debbit.py` is in.
-    - Alternatively, if using macOS, you can `brew install geckodriver` and symlink it into this directory (`ln -s /usr/local/bin/geckodriver geckodriver`)
-4. Copy and rename the file `sample_config.txt` to `config.txt` (or `config.yml`) in the same directory.
-5. Configure your python3 environment and dependencies.
+1. Install the latest version of Firefox.
+1. Copy and rename the file `sample_config.txt` to `config.txt` (or `config.yml`) in the same directory.
+1. Configure your python3 environment and dependencies.
 
     These instructions will vary somewhat depending on your platform. For example,
     if your system already has Python3 then you'll use `pip` instead of `pip3`. If

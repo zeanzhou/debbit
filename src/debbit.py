@@ -25,6 +25,8 @@ import yaml  # PyYAML
 from selenium import webdriver
 from selenium.common.exceptions import SessionNotCreatedException
 from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.firefox.service import Service as FirefoxService
+from webdriver_manager.firefox import GeckoDriverManager
 
 from result import Result
 
@@ -490,19 +492,6 @@ def send_email(purpose, to_email, subject, body, body_mime_type, attachment_name
 
 
 def get_webdriver(merchant):
-    if os.name == 'nt':
-        geckodriver_file = 'geckodriver.exe'
-    else:
-        geckodriver_file = 'geckodriver'
-
-    if os.path.exists(absolute_path('program_files', 'geckodriver.exe')):
-        geckodriver_path = absolute_path('program_files', 'geckodriver.exe')
-    elif os.path.exists(absolute_path('program_files', 'geckodriver')):
-        geckodriver_path = absolute_path('program_files', 'geckodriver')
-    else:
-        LOGGER.error(absolute_path('program_files', geckodriver_file) + ' does not exist. Download the latest version of geckodriver from https://github.com/mozilla/geckodriver/releases and extract it. Copy ' + geckodriver_file + ' to ' + absolute_path('program_files'))
-        sys.exit(1)
-
     WEB_DRIVER_LOCK.acquire()  # Only execute one purchase at a time so the console log messages don't inter mix
     options = Options()
     options.headless = CONFIG.hide_web_browser
@@ -515,7 +504,7 @@ def get_webdriver(merchant):
     try:
         driver = webdriver.Firefox(options=options,
                                  service_log_path=os.devnull,
-                                 executable_path=geckodriver_path,
+                                 service=FirefoxService(GeckoDriverManager().install()),
                                  firefox_profile=profile)
 
     except SessionNotCreatedException as e:
